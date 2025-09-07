@@ -19,6 +19,11 @@ namespace PhotoSorter.Full
 
         private void Log(string message)
         {
+            if (!Dispatcher.CheckAccess())
+            {
+                Dispatcher.BeginInvoke(new Action(() => Log(message)));
+                return;
+            }
             TxtLog.AppendText($"{DateTime.Now:HH:mm:ss} {message}{Environment.NewLine}");
             TxtLog.ScrollToEnd();
         }
@@ -115,14 +120,11 @@ namespace PhotoSorter.Full
             foreach (var dir in targets)
             {
                 Log($"处理: {dir}");
-                var files = Directory.GetFiles(dir)
-                    .Where(p => ImgExt.Contains(Path.GetExtension(p).ToLower()))
-                    .ToList();
+                var files = Directory.GetFiles(dir).Where(p => ImgExt.Contains(Path.GetExtension(p).ToLower())).ToList();
                 if (files.Count == 0) { Log("(无图片)"); continue; }
 
                 var infos = files.Select(p => Analyze(p)).ToList();
-
-                IEnumerable<FileInfoEx> ordered = colorFirst
+                var ordered = colorFirst
                     ? infos.OrderBy(i => i.Orientation).ThenBy(i => i.Hue).ThenBy(i => i.Brightness)
                     : infos.OrderBy(i => i.Orientation).ThenBy(i => i.Brightness).ThenBy(i => i.Hue);
 
