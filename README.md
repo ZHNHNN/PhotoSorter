@@ -54,43 +54,6 @@
 
 ---
 
-## 发布到 GitHub 的建议
-
-> 建议把“源码”和“成品”分开：源码放仓库，成品放 Release 附件（zip）。
-
-### 仓库建议包含
-
-- `PhotoSorter.Wpf/`（源码工程：XAML、.cs、.csproj）
-- `README.md`（项目简介、构建与使用说明）
-- `LICENSE`（开源许可证，常见：MIT）
-- `.gitignore`（使用 VisualStudio/.NET 模板，忽略 bin/obj）
-- `docs/`（可选：截图、动图演示）
-
-示例 .gitignore（节选）：
-
-```
-bin/
-obj/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-``` 
-
-### 发布 Release（推荐做法）
-
-1. 在本地构建“发布版”：得到“发布/”目录
-2. 将“发布/”打包为 zip（保留 scripts/ 子目录）
-3. 在 GitHub 仓库 → Releases → New Release：
-   - Tag：v1.0.0（按语义化版本）
-   - Release notes：更新说明
-   - Attach binaries：上传打包好的 zip
-
-### 可选项
-
-- 代码签名（证书）：减少 Windows SmartScreen 警告
-- CI/CD：使用 GitHub Actions（Windows runner）自动构建并上传 Release
-- 问题模板/讨论区：提升反馈效率
 
 如需，我可以：
 
