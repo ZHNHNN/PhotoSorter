@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="app.ico" />
+  </ItemGroup>
+
+  <!-- Use scripts from existing dist folder to keep repo minimal -->
+  <ItemGroup>
+    <Content Include="..\发布\scripts\reorder-photos.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\reorder-photos.ps1</Link>
+    </Content>
+    <Content Include="..\发布\scripts\normalize-folders.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\normalize-folders.ps1</Link>
+    </Content>
+    <Content Include="..\发布\scripts\reorder-photos-color-first.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\reorder-photos-color-first.ps1</Link>
+    </Content>
+  </ItemGroup>
+
+</Project>
