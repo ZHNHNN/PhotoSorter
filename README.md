@@ -55,8 +55,3 @@
 ---
 
 
-如需，我可以：
-
-- 生成项目根目录的 `README.md`、`LICENSE` 与 `.gitignore`
-- 制作 Release 用的 zip 包，或配置 GitHub Actions 自动出包
-
